@@ -1,0 +1,15 @@
+server {
+        listen 80;
+        listen [::]:80;
+
+        root /var/www/api/html;
+        index index.html;
+
+        server_name api.com www.api.com;
+
+        location / {
+                proxy_pass http://localhost:3000;
+        }
+        
+        
+}

@@ -1,0 +1,32 @@
+server {
+        listen 80;
+        listen [::]:80;
+
+       # root /var/www/wernertsekumahapi/html;
+       # index index.html index.htm index.nginx-debian.html;
+
+        server_name wernertsekumahapi.com www.wernertsekumahapi.com;
+
+       # location / {
+       #         try_files $uri $uri/ =404;
+       # }
+	error_page 404 /error404.html;
+	
+	location = /error404.html {
+		root /var/www/html;
+		internal;
+	}
+	location = / {
+		proxy_pass http://localhost:8000/;
+	}
+		        
+        location = /admin {
+                proxy_pass http://localhost:8000/admin;
+        }
+	location = /face_detector {
+		proxy_pass http://localhost:8000/face_detector;
+	}
+	location = /face_detector/detect {
+		proxy_pass http://localhost:8000/face_detector/detect;
+	}
+}
